@@ -2,17 +2,18 @@
 % Job saved on 02-Oct-2019 17:59:16 by cfg_util (rev $Rev: 7345 $)
 % spm SPM - SPM12 (7487)
 % cfg_basicio BasicIO - Unknown
+% Modified by Yuchao Wang 10/3/2019
 %-----------------------------------------------------------------------
 
-rootDir = '/Users/yuchaow/Documents/Test Directory';
+rootDir = '/Users/yuchaow/Documents/narrativefMRIdata';
 
 %%Prep output directory 
-for i = 1:12 
+for i = 1:60 
     spm_mkdir([rootDir '/S' num2str(i, '%02.f') '/SPMemoOutputs']);
 end
 
 %%BATCH RUN
-for i = 1:7 
+for i = 1:60 
     outDirSPM = [rootDir '/S' num2str(i, '%02.f') '/SPMemoOutputs'];
     inDirNII = [rootDir '/S' num2str(i, '%02.f') '/session1'];
      if mod(i,2) == 0 
@@ -28,8 +29,8 @@ matlabbatch{1}.spm.stats.fmri_spec.timing.RT = 0.88;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t = 16;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t0 = 8;
 %%
-DMniiList = spm_select('FPList', [inDirNII '/MH1st_run1/'], '\.nii*');
-sess1_scans = spm_select('Expand', DMniiList);
+DHniiList = spm_select('FPList', [inDirNII '/MH1st_run1/'], '\.nii*');
+sess1_scans = spm_select('Expand', DHniiList);
 matlabbatch{1}.spm.stats.fmri_spec.sess(1).scans = cellstr(sess1_scans);
 %%
 matlabbatch{1}.spm.stats.fmri_spec.sess(1).cond.name = 'DHOG';
@@ -3693,11 +3694,11 @@ matlabbatch{1}.spm.stats.fmri_spec.sess(1).cond.pmod.poly = 1;
 matlabbatch{1}.spm.stats.fmri_spec.sess(1).cond.orth = 1;
 matlabbatch{1}.spm.stats.fmri_spec.sess(1).multi = {''};
 matlabbatch{1}.spm.stats.fmri_spec.sess(1).regress = struct('name', {}, 'val', {});
-matlabbatch{1}.spm.stats.fmri_spec.sess(1).multi_reg = {'/Users/yuchaow/Documents/Test Directory/S01/session1/MH1st_run1/rp_S01_0006.txt'};
+matlabbatch{1}.spm.stats.fmri_spec.sess(1).multi_reg = {[inDirNII '/MH1st_run1/rp_S' num2str(i, '%02.f') '_0006.txt']};
 matlabbatch{1}.spm.stats.fmri_spec.sess(1).hpf = 512;
 %%
-DHniiList = spm_select('FPList', [inDirNII '/DM3rd_run2/'], '\.nii*');
-sess2_scans = spm_select('Expand', DHniiList);
+DMniiList = spm_select('FPList', [inDirNII '/DM3rd_run2/'], '\.nii*');
+sess2_scans = spm_select('Expand', DMniiList);
 matlabbatch{1}.spm.stats.fmri_spec.sess(2).scans = cellstr(sess2_scans);
 %%
 matlabbatch{1}.spm.stats.fmri_spec.sess(2).cond.name = 'DM2V';
@@ -6647,7 +6648,7 @@ matlabbatch{1}.spm.stats.fmri_spec.sess(2).cond.pmod.poly = 1;
 matlabbatch{1}.spm.stats.fmri_spec.sess(2).cond.orth = 1;
 matlabbatch{1}.spm.stats.fmri_spec.sess(2).multi = {''};
 matlabbatch{1}.spm.stats.fmri_spec.sess(2).regress = struct('name', {}, 'val', {});
-matlabbatch{1}.spm.stats.fmri_spec.sess(2).multi_reg = {'/Users/yuchaow/Documents/Test Directory/S01/session1/DM3rd_run2/rp_S01_0006.txt'};
+matlabbatch{1}.spm.stats.fmri_spec.sess(2).multi_reg = {[inDirNII '/DM3rd_run2/rp_S' num2str(i, '%02.f') '_0006.txt']};
 matlabbatch{1}.spm.stats.fmri_spec.sess(2).hpf = 512;
 matlabbatch{1}.spm.stats.fmri_spec.fact = struct('name', {}, 'levels', {});
 matlabbatch{1}.spm.stats.fmri_spec.bases.hrf.derivs = [0 0];
