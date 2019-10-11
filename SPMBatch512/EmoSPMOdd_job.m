@@ -6661,10 +6661,19 @@ matlabbatch{2}.spm.stats.fmri_est.spmmat(1) = cfg_dep('fMRI model specification:
 matlabbatch{2}.spm.stats.fmri_est.write_residuals = 0;
 matlabbatch{2}.spm.stats.fmri_est.method.Classical = 1;
 matlabbatch{3}.spm.stats.con.spmmat(1) = cfg_dep('Model estimation: SPM.mat File', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','spmmat'));
-matlabbatch{3}.spm.stats.con.consess{1}.fcon.name = 'emoParaMod >';
-matlabbatch{3}.spm.stats.con.consess{1}.fcon.weights = [0 1];
-matlabbatch{3}.spm.stats.con.consess{1}.fcon.sessrep = 'both';
-matlabbatch{3}.spm.stats.con.delete = 0;
+matlabbatch{3}.spm.stats.con.consess{1}.tcon.name = 'EmoParaModT >';
+matlabbatch{3}.spm.stats.con.consess{1}.tcon.weights = [0 1];
+matlabbatch{3}.spm.stats.con.consess{1}.tcon.sessrep = 'repl';
+matlabbatch{3}.spm.stats.con.consess{2}.fcon.name = 'EmoParaModF >';
+matlabbatch{3}.spm.stats.con.consess{2}.fcon.weights = [0 1];
+matlabbatch{3}.spm.stats.con.consess{2}.fcon.sessrep = 'repl';
+matlabbatch{3}.spm.stats.con.consess{3}.tcon.name = 'EmoWordOnsetT >';
+matlabbatch{3}.spm.stats.con.consess{3}.tcon.weights = [1 0];
+matlabbatch{3}.spm.stats.con.consess{3}.tcon.sessrep = 'repl';
+matlabbatch{3}.spm.stats.con.consess{4}.fcon.name = 'EmoWordOnsetF >';
+matlabbatch{3}.spm.stats.con.consess{4}.fcon.weights = [1 0];
+matlabbatch{3}.spm.stats.con.consess{4}.fcon.sessrep = 'repl';
+matlabbatch{3}.spm.stats.con.delete = 1;
 
 
 spm_jobman('run',matlabbatch);
